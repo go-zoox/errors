@@ -24,18 +24,10 @@ import (
     "github.com/go-zoox/errors"
 )
 
-var ErrGlobal = errors.New("global err")
-var ErrGlobal2 = errors.New("global err 2")
-var ErrNotUsed = errors.New("not used err")
-
 func main() {
     err := f3()
     
-    stderrors.Is(err, ErrGlobal) // true
-    stderrors.Is(err, ErrGlobal2) // true
-    stderrors.Is(err, ErrNotUsed) // false
-
-    println(err.Error()) // "global err 2: global err: string1"
+    fmt.Println(err)
 }
 
 func f1() error {
@@ -43,11 +35,11 @@ func f1() error {
 }
 
 func f2() error {
-    return errors.Wrap(f1(), ErrGlobal)
+    return errors.Wrap(f1(), "custom message f2")
 }
 
 func f3() error {
-    return errors.Wrap(f2(), ErrGlobal2)
+    return errors.Wrapf(f2(), "custom message f3 %s", "test")
 }
 ```
 
