@@ -21,7 +21,7 @@ package main
 import (
     stderrors "errors"
 
-    "github.com/PumpkinSeed/errors"
+    "github.com/go-zoox/errors"
 )
 
 var ErrGlobal = errors.New("global err")
